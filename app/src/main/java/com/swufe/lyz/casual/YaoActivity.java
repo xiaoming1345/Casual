@@ -4,26 +4,15 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link YaoFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link YaoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class YaoFragment extends AppCompatActivity {
+public class YaoActivity extends AppCompatActivity {
     private SensorManager sensorManager;
     private Vibrator vibrator;
     private static int pics[] = {R.mipmap.a,R.mipmap.b,R.mipmap.c,R.mipmap.d,R.mipmap.e};
@@ -35,7 +24,7 @@ public class YaoFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_yao);
 
         img = findViewById(R.id.imageView);
 
