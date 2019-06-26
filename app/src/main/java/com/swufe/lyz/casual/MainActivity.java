@@ -60,7 +60,10 @@ public class MainActivity extends Activity implements AbsListView.OnScrollListen
         });
         DB = new DBHelper(this);
         dbread = DB.getReadableDatabase();
+        // 清空数据库中表的内容
+        //dbread.execSQL("delete from note");
         RefreshNotesList();
+
 
         listview.setOnItemClickListener(this);
         listview.setOnItemLongClickListener(this);
@@ -101,21 +104,19 @@ public class MainActivity extends Activity implements AbsListView.OnScrollListen
 
     @Override
     public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-        // TODO Auto-generated method stub
 
     }
 
     // 滑动listview监听事件
     @Override
     public void onScrollStateChanged(AbsListView arg0, int arg1) {
-        // TODO Auto-generated method stub
         switch (arg1) {
             case SCROLL_STATE_FLING:
                 Log.i("main", "用户在手指离开屏幕之前，由于用力的滑了一下，视图能依靠惯性继续滑动");
             case SCROLL_STATE_IDLE:
                 Log.i("main", "视图已经停止滑动");
             case SCROLL_STATE_TOUCH_SCROLL:
-                Log.i("main", "手指没有离开屏幕，试图正在滑动");
+                Log.i("main", "手指没有离开屏幕，视图正在滑动");
         }
     }
 
@@ -125,14 +126,13 @@ public class MainActivity extends Activity implements AbsListView.OnScrollListen
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         NoteEdit.ENTER_STATE = 1;
         String content = listview.getItemAtPosition(arg2) + "";
-        String content1 = content.substring(content.indexOf("=") + 1,
-                content.indexOf(","));
+        String content1 = content.substring(content.indexOf("=") + 1,content.indexOf(","));
         Log.d("CONTENT", content1);
-        Cursor c = dbread.query("note", null,
-                "content=" + "'" + content1 + "'", null, null, null, null);
+        Cursor c = dbread.query("note", null, "content=" + "'" + content1 + "'", null, null, null, null);
         while (c.moveToNext()) {
             String No = c.getString(c.getColumnIndex("_id"));
             Log.d("TEXT", No);
+
             Intent myIntent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString("info", content1);
@@ -143,6 +143,8 @@ public class MainActivity extends Activity implements AbsListView.OnScrollListen
         }
 
     }
+
+
 
     @Override
     // 接受上一个页面返回的数据，并刷新页面

@@ -1,5 +1,6 @@
 package com.swufe.lyz.casual;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,6 +11,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 public class YaoActivity extends AppCompatActivity {
@@ -93,5 +95,10 @@ public class YaoActivity extends AppCompatActivity {
             }
         }
     };
+
+    public void openOne(View btn){
+        Intent hello = new Intent(this,MainActivity.class);
+        startActivity(hello);
+    }
 
 }
